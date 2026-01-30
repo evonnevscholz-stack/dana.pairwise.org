@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pairwise Shop | Curated Products for a Better World Dana Liga</title>
+    <link rel="canonical" href="https://shop.pairwise.org/">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        :root {
+            --primary: #2A6E6F;
+            --primary-light: #3A8E8F;
+            --secondary: #FF7E5F;
+            --light: #F8F9FA;
+            --dark: #212529;
+            --gray: #6C757D;
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--light);
+        }
+
+        /* Header & Navigation */
+        .header {
+            background-color: white;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo span {
+            color: var(--secondary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 0.5rem 0;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--secondary);
+            left: 0;
+            bottom: 0;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 1.2rem;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 0.7rem 1.8rem;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-light);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(42, 110, 111, 0.2);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(42, 110, 111, 0.05);
+        }
+
+        .mobile-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 5rem 5% 6rem;
+            background: linear-gradient(135deg, rgba(42, 110, 111, 0.05) 0%, rgba(255, 126, 95, 0.05) 100%);
+            display: flex;
+            align-items: center;
+            min-height: 85vh;
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 3.2rem;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+        }
+
+        .hero-text h1 span {
+            color: var(--primary);
+        }
+
+        .hero-text p {
+            font-size: 1.2rem;
+            color: var(--gray);
+            margin-bottom: 2.5rem;
+            max-width: 90%;
+        }
+
+        .hero-image {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: var(--transition);
+        }
+
+        .hero-image:hover img {
+            transform: scale(1.03);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 6rem 5%;
+            background-color: white;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+
+        .section-title p {
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: var(--light);
+            padding: 2.5rem 2rem;
+            border-radius: 10px;
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+            border-color: transparent;
+        }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background: rgba(42, 110, 111, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: var(--primary);
+            font-size: 1.8rem;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        /* Products Preview */
+        .products {
+            padding: 6rem 5%;
+            background-color: #f8f9fa;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-img {
+            height: 220px;
+            overflow: hidden;
+        }
+
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .product-card:hover .product-img img {
+            transform: scale(1.05);
+        }
+
+        .product-info {
+            padding: 1.8rem;
+        }
+
+        .product-info h3 {
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .product-info p {
+            color: var(--gray);
+            margin-bottom: 1.2rem;
+            font-size: 0.95rem;
+        }
+
+        .price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: block;
+            margin-bottom: 1.2rem;
+        }
+
+        /* CTA Section */
+        .cta {
+            padding: 6rem 5%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            opacity: 0.9;
+        }
+
+        .btn-light {
+            background-color: white;
+            color: var(--primary);
+            padding: 0.9rem 2.5rem;
+            font-size: 1.1rem;
+        }
+
+        .btn-light:hover {
+            background-color: var(--light);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 4rem 5% 2rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-col h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-col ul li a {
+            color: #adb5bd;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-col ul li a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #adb5bd;
+            font-size: 0.9rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.2rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .hero-text {
+                text-align: center;
+            }
+
+            .hero-text p {
+                max-width: 100%;
+            }
+
+            .hero-text h1 {
+                font-size: 2.8rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                padding: 2rem;
+                box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+                transform: translateY(-150%);
+                opacity: 0;
+                transition: var(--transition);
+                z-index: 999;
+            }
+
+            .nav-links.active {
+                transform: translateY(0);
+                opacity: 1;
+            }
+
+            .nav-actions {
+                display: none;
+            }
+
+            .hero-text h1 {
+                font-size: 2.4rem;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+
+            .cta h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header class="header">
+        <nav class="navbar">
+            <a href="/" class="logo">
+                <i class="fas fa-leaf"></i>
+                Pairwise<span>Shop</span>
+            </a>
+            
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#products">Products</a></li>
+                <li><a href="#mission">Our Mission</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            
+            <div class="nav-actions">
+                <a href="#products" class="btn btn-primary">Shop Now</a>
+            </div>
+            
+            <div class="mobile-toggle" id="mobileToggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Curated Products for a <span>Better World</span></h1>
+                <p>At Pairwise Shop, we believe every purchase can make a difference. Discover ethically sourced, sustainable products that support communities and protect our planet. Join our movement for conscious consumption.</p>
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                    <a href="#products" class="btn btn-primary">Explore Products</a>
+                    <a href="#mission" class="btn btn-secondary">Our Mission</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <!-- Placeholder image - replace with your own -->
+                <div style="background: linear-gradient(135deg, var(--primary-light) 0%, var(--secondary) 100%); height: 400px; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem;">
+                    <div style="text-align: center; padding: 2rem;">
+                        <i class="fas fa-globe-americas" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                        <p>Sustainable Product Showcase</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="mission">
+        <div class="section-title">
+            <h2>Why Choose Pairwise?</h2>
+            <p>We're redefining e-commerce with values that matter</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-handshake"></i>
+                </div>
+                <h3>Ethically Sourced</h3>
+                <p>All products are sourced from suppliers who uphold fair labor practices and provide living wages to their workers.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-leaf"></i>
+                </div>
+                <h3>Sustainable Materials</h3>
+                <p>We prioritize biodegradable, recycled, and renewable materials to minimize our environmental footprint.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-globe"></i>
+                </div>
+                <h3>Community Impact</h3>
+                <p>10% of every purchase supports environmental conservation projects and community development initiatives.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-shipping-fast"></i>
+                </div>
+                <h3>Carbon-Neutral Shipping</h3>
+                <p>All our shipping is carbon-neutral through partnerships with environmental offset programs.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Preview -->
+    <section class="products" id="products">
+        <div class="section-title">
+            <h2>Featured Products</h2>
+            <p>Discover our carefully curated selection of sustainable goods</p>
+        </div>
+        <div class="products-grid">
+            <div class="product-card">
+                <div class="product-img">
+                    <div style="background: linear-gradient(135deg, #A8E6CF 0%, #6ED3D8 100%); height: 100%;"></div>
+                </div>
+                <div class="product-info">
+                    <h3>Reusable Bamboo Set</h3>
+                    <p>Complete set of bamboo utensils, straws, and containers. Perfect for zero-waste living.</p>
+                    <span class="price">$34.99</span>
+                    <a href="#" class="btn btn-primary" style="width: 100%;">Add to Cart</a>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-img">
+                    <div style="background: linear-gradient(135deg, #FFD3B6 0%, #FFAAA5 100%); height: 100%;"></div>
+                </div>
+                <div class="product-info">
+                    <h3>Organic Cotton Tote</h3>
+                    <p>Handmade tote bag from 100% organic cotton, supporting women artisans in Guatemala.</p>
+                    <span class="price">$24.99</span>
+                    <a href="#" class="btn btn-primary" style="width: 100%;">Add to Cart</a>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-img">
+                    <div style="background: linear-gradient(135deg, #D4A5A5 0%, #9F86C0 100%); height: 100%;"></div>
+                </div>
+                <div class="product-info">
+                    <h3>Upcycled Journal</h3>
+                    <p>Beautiful journal made from upcycled materials with plantable seed paper cover.</p>
+                    <span class="price">$19.99</span>
+                    <a href="#" class="btn btn-primary" style="width: 100%;">Add to Cart</a>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-img">
+                    <div style="background: linear-gradient(135deg, #95E1D3 0%, #FCE38A 100%); height: 100%;"></div>
+                </div>
+                <div class="product-info">
+                    <h3>Eco-Friendly Cleaner</h3>
+                    <p>Concentrated cleaning solution with biodegradable formula and refillable glass bottle.</p>
+                    <span class="price">$16.99</span>
+                    <a href="#" class="btn btn-primary" style="width: 100%;">Add to Cart</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <h2>Join Our Community of Conscious Consumers</h2>
+        <p>Subscribe to our newsletter and be the first to know about new products, exclusive offers, and stories from the communities we support.</p>
+        <form style="max-width: 500px; margin: 0 auto; display: flex; gap: 0.5rem;">
+            <input type="email" placeholder="Your email address" style="flex: 1; padding: 0.9rem 1.2rem; border: none; border-radius: 4px; font-size: 1rem;">
+            <button type="submit" class="btn btn-light">Subscribe</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="footer-content">
+            <div class="footer-col">
+                <h3>Pairwise Shop</h3>
+                <p style="color: #adb5bd; margin-bottom: 1.5rem;">Creating meaningful connections between conscious consumers and ethical producers since 2020.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-pinterest"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#products">All Products</a></li>
+                    <li><a href="#mission">Our Mission</a></li>
+                    <li><a href="#">Shipping Policy</a></li>
+                    <li><a href="#">Return Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Contact Us</h3>
+                <ul>
+                    <li style="color: #adb5bd;"><i class="fas fa-envelope" style="margin-right: 0.5rem;"></i> hello@pairwise.org</li>
+                    <li style="color: #adb5bd;"><i class="fas fa-phone" style="margin-right: 0.5rem;"></i> +1 (555) 123-4567</li>
+                    <li style="color: #adb5bd;"><i class="fas fa-map-marker-alt" style="margin-right: 0.5rem;"></i> 123 Sustainable Way, Green City</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Pairwise Shop. All rights reserved. | Designed with <i class="fas fa-heart" style="color: var(--secondary);"></i> for a better world.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Navigation Toggle
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            mobileToggle.innerHTML = navLinks.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
